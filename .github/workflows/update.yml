@@ -2,8 +2,8 @@ name: Atualizar Horários
 
 on:
   schedule:
-    - cron: '0 4,16 * * *'   # Roda todo dia às 04:00 e 16:00 UTC (ajuste o fuso se precisar)
-  workflow_dispatch:          # Permite rodar manualmente
+    - cron: '0 4,16 * * *'   # Executa todo dia às 04:00 e 16:00 UTC
+  workflow_dispatch:          # Permite disparar manualmente
 
 jobs:
   update:
