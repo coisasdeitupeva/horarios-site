@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import pytz
 
 url = "https://viaitupeva.com.br/horarios"
 resposta = requests.get(url)
@@ -17,8 +18,9 @@ tabelas = soup.find_all("table")
 if tabelas:
     html_tabelas = "".join(str(tabela) for tabela in tabelas)
 
-    # Gera a data e hora atual formatada
-    agora = datetime.now().strftime("%d/%m/%Y às %H:%M")
+    # Ajusta o horário para o fuso de São Paulo (UTC-3)
+    fuso_sp = pytz.timezone("America/Sao_Paulo")
+    agora = datetime.now(fuso_sp).strftime("%d/%m/%Y às %H:%M")
 
     html_completo = f"""
     <!DOCTYPE html>
@@ -67,6 +69,3 @@ if tabelas:
     print("✅ Arquivo horarios_todas_tabelas.html gerado com sucesso!")
 else:
     print("❌ Não foram encontradas tabelas na página.")
-
-    with open("../index.html", "w", encoding="utf-8") as f:
-        f.write(html_formatado)
