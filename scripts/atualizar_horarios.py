@@ -56,7 +56,7 @@ if tabelas:
         </style>
     </head>
     <body>
-        <h1>Horários de Ônibus - Todas as Tabelas</h1>
+        <h1>Quadro de Horários Via Itupeva</h1>
         <p class="atualizacao">Última atualização: {agora}</p>
         {html_tabelas}
     </body>
