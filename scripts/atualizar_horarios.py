@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 url = "https://viaitupeva.com.br/horarios"
 resposta = requests.get(url)
@@ -15,6 +16,9 @@ tabelas = soup.find_all("table")
 
 if tabelas:
     html_tabelas = "".join(str(tabela) for tabela in tabelas)
+
+    # Gera a data e hora atual formatada
+    agora = datetime.now().strftime("%d/%m/%Y às %H:%M")
 
     html_completo = f"""
     <!DOCTYPE html>
@@ -42,10 +46,16 @@ if tabelas:
             th {{
                 background-color: #f2f2f2;
             }}
+            .atualizacao {{
+                font-size: 14px;
+                color: #777;
+                margin-bottom: 20px;
+            }}
         </style>
     </head>
     <body>
         <h1>Horários de Ônibus - Todas as Tabelas</h1>
+        <p class="atualizacao">Última atualização: {agora}</p>
         {html_tabelas}
     </body>
     </html>
@@ -60,4 +70,3 @@ else:
 
     with open("../index.html", "w", encoding="utf-8") as f:
         f.write(html_formatado)
-
