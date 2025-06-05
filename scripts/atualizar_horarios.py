@@ -57,7 +57,7 @@ if tabelas:
     </head>
     <body>
         <h1>Quadro de Horários Via Itupeva</h1>
-        <p class="atualizacao">Última atualização: {agora}</p>
+        <p class="atualizacao">Última atualização: {agora} | Fonte: Via Itupeva</p>
         {html_tabelas}
     </body>
     </html>
